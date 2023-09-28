@@ -28,19 +28,15 @@ function useSuggestion(e) {
 	search("");
 }
 
-suggestions.addEventListener('mouseover', function(e) {
-	const li = e.target;
-	if (li.tagName === 'LI') {
-		e.target.classList.add('hoverOn');
+function closeAndOpenSuggestion(e) {
+	if (e.target === document.querySelector('body')) {
+		suggestions.innerHTML = "";
 	}
-});
-
-suggestions.addEventListener('mouseout', function(e) {
-	const li = e.target;
-	if (li.tagName === 'LI') {
-		e.target.classList.remove('hoverOn');
+	if (e.target === input) {
+		search(input.value);
 	}
-});
+}
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
+document.addEventListener('click', closeAndOpenSuggestion);
